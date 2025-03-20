@@ -137,7 +137,7 @@ def create(research_context, product_context, assignment_context, evaluate=False
         editor_response = editor.edit(processed_writer_result['article'], processed_writer_result["feedback"])
 
         retry_count += 1
-        if retry_count >= 2:
+        if retry_count >= 4:
             break
 
         yield complete_message("editor", editor_response)
