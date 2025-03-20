@@ -65,8 +65,9 @@ def building_agents_message():
         type="message", message=f"Initializing Agent Service, please wait a few seconds..."
     ).to_json_line()
 
+# evaluate true/false steers live evaluations
 @trace
-def create(research_context, product_context, assignment_context, evaluate):
+def create(research_context, product_context, assignment_context, evaluate=True):
     
     feedback = "No Feedback"
 
