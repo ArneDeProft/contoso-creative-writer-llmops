@@ -6,7 +6,7 @@ param principalId = readEnvironmentVariable('AZURE_PRINCIPAL_ID', '')
 param resourceGroupName = readEnvironmentVariable('AZURE_RESOURCE_GROUP', '')
 
 param aiHubName = readEnvironmentVariable('AZUREAI_HUB_NAME', '')
-param aiProjectName = readEnvironmentVariable('AZUREAI_PROJECT_NAME', '')
+param aiProjectName = readEnvironmentVariable('AZURE_AI_PROJECT_NAME', '')
 param endpointName = readEnvironmentVariable('AZUREAI_ENDPOINT_NAME', '')
 
 param openAiName = readEnvironmentVariable('AZURE_OPENAI_NAME', '')

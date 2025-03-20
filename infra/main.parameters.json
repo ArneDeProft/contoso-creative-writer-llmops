@@ -8,8 +8,11 @@
     "location": {
       "value": "${AZURE_LOCATION}"
     },
+    "ai_project_name": {
+      "value": "${AZURE_AI_PROJECT_NAME}"
+    },
     "openAiResourceName": {
-      "value": "${AZURE_OPENAI_RESOURCE_NAME}"
+      "value": "${AZUREAI_PROJECT_NAME}"
     },
     "openAiResourceLocation": {
       "value": "${AZURE_OPENAI_RESOURCE_LOCATION}"

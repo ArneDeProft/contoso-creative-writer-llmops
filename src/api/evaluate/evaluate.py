@@ -427,33 +427,36 @@ if __name__ == "__main__":
     import jsonlines
     import pathlib
     
+    try:
+        model_config = {
+            "azure_deployment":os.environ["AZURE_OPENAI_4_EVAL_DEPLOYMENT_NAME"],   
+            "api_version":os.environ["AZURE_OPENAI_API_VERSION"],
+            "azure_endpoint":f"https://{os.getenv('AZURE_OPENAI_NAME')}.cognitiveservices.azure.com/"
+        }
+        project_scope = {
+            "subscription_id": os.environ["AZURE_SUBSCRIPTION_ID"],   
+            "resource_group_name": os.environ["AZURE_RESOURCE_GROUP"],
+            "project_name": os.environ["AZURE_AI_PROJECT_NAME"],        
+        }
+        
+        start=time.time()
+        print(f"Starting evaluate...")
 
-    model_config = {
-        "azure_deployment":os.environ["AZURE_OPENAI_4_EVAL_DEPLOYMENT_NAME"],   
-        "api_version":os.environ["AZURE_OPENAI_API_VERSION"],
-        "azure_endpoint":f"https://{os.getenv('AZURE_OPENAI_NAME')}.cognitiveservices.azure.com/"
-    }
-    project_scope = {
-        "subscription_id": os.environ["AZURE_SUBSCRIPTION_ID"],   
-        "resource_group_name": os.environ["AZURE_RESOURCE_GROUP"],
-        "project_name": os.environ["AZURE_AI_PROJECT_NAME"],        
-    }
-    
-    start=time.time()
-    print(f"Starting evaluate...")
+        eval_result = evaluate_orchestrator(model_config, project_scope, data_path=folder +"/eval_inputs.jsonl")
+        # evaluate_remote(data_path=folder +"/eval_data.jsonl")
 
-    eval_result = evaluate_orchestrator(model_config, project_scope, data_path=folder +"/eval_inputs.jsonl")
-    # evaluate_remote(data_path=folder +"/eval_data.jsonl")
+        # img_paths = []
+        # # This is code to add an image from a file path
+        # for image_num in range(1,4):
+        #     parent = pathlib.Path(__file__).parent.resolve()
+        #     path = os.path.join(parent, "data")
+        #     image_path = os.path.join(path, f"{image_num}.png")
+        #     img_paths.append(image_path)
 
-    # img_paths = []
-    # # This is code to add an image from a file path
-    # for image_num in range(1,4):
-    #     parent = pathlib.Path(__file__).parent.resolve()
-    #     path = os.path.join(parent, "data")
-    #     image_path = os.path.join(path, f"{image_num}.png")
-    #     img_paths.append(image_path)
+        # eval_image_result = evaluate_image(project_scope, img_paths)
 
-    # eval_image_result = evaluate_image(project_scope, img_paths)
-
-    end=time.time()
-    print(f"Finished evaluate in {end - start}s")
+        end=time.time()
+        print(f"Finished evaluate in {end - start}s")
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        sys.exit(1)
