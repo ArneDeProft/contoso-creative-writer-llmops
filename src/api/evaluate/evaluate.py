@@ -118,7 +118,7 @@ def run_orchestrator(research_context, product_context, assignment_context):
     context = {}
     response = None
 
-    for result in create(research_context, product_context, assignment_context,evaluate=True):
+    for result in create(research_context, product_context, assignment_context,evaluate=False):
         if not type(result) == tuple:
             parsed_result = json.loads(result)
         if type(parsed_result) is list:
