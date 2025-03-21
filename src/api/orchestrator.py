@@ -67,7 +67,7 @@ def building_agents_message():
 
 # evaluate true/false steers live evaluations
 @trace
-def create(research_context, product_context, assignment_context, evaluate=True):
+def create(research_context, product_context, assignment_context, evaluate=False):
     
     feedback = "No Feedback"
 
